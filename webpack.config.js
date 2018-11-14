@@ -12,7 +12,7 @@ if (process.env.NODE_ENV === 'test') {
   require('dotenv').config({ path: '.env.development'} );
 }
 
-module.exports = (env) => {
+module.exports = (env='development') => {
   const isProduction = env == 'production';
   const CSSExtract = new ExtractTextPlugin('styles.css');
 
@@ -54,6 +54,7 @@ module.exports = (env) => {
     },
     plugins: [
       CSSExtract,
+      new webpack.DefinePlugin({'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')}),
       new webpack.DefinePlugin({
         'process.env.FIREBASE_API_KEY': JSON.stringify(process.env.FIREBASE_API_KEY),
         'process.env.FIREBASE_AUTH_DOMAIN': JSON.stringify(process.env.FIREBASE_AUTH_DOMAIN),

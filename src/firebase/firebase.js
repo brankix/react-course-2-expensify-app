@@ -1,19 +1,18 @@
 import * as firebase from 'firebase';
+console.log("process: ", process.env);
+try {
+  var config = {
+    apiKey: process.env.FIREBASE_API_KEY,
+    authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+    databaseURL: process.env.FIREBASE_DATABASE_URL,
+    projectId: process.env.FIREBASE_PROJECT_ID,
+    storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID
+  };
+} catch (e) {
+  console.log("var:" , e);
+}
 
-const config = {
-  // apiKey: "AIzaSyBchjjZW_Zz3JME-8EQ4iz-x5bZnYlMTrc",
-  // authDomain: "expensify-eb241.firebaseapp.com",
-  // databaseURL: "https://expensify-eb241.firebaseio.com",
-  // projectId: "expensify-eb241",
-  // storageBucket: "expensify-eb241.appspot.com",
-  // messagingSenderId: "912465473652"
-  apiKey: process.env.FIREBASE_API_KEY,
-  authDomain: process.env.FIREBASE_AUTH_DOMAIN,
-  databaseURL: process.env.FIREBASE_DATABASE_URL,
-  projectId: process.env.FIREBASE_PROJECT_ID,
-  storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID
-};
 
 firebase.initializeApp(config);
 
